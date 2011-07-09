@@ -1,0 +1,88 @@
+run: all
+all : test_all
+
+build-pre:
+	
+
+build-post:
+	
+
+INPUTS_DIR        = inputs/
+OUTPUTS_DIR       = outputs/
+REF_SHELL         = bash
+TEST_SHELL        = mini-shell
+TESTS_NUMBERS     = 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17
+TESTS_LIST        = $(addprefix test_, $(TESTS_NUMBERS))
+ALL_TESTS_LIST    = test_01 test_02 $(TESTS_LIST) test_18
+PRINT_PROMPT      = printf '> '
+
+
+.PHONY : all test_all create_sum_up_files sum_up clean clean_files clean_results $(ALL_TESTS_LIST)
+
+
+test_all : clean create_sum_up_files $(ALL_TESTS_LIST) sum_up
+
+
+create_sum_up_files : 
+	@touch passed.txt failed.txt
+
+
+test_01 : 
+	@$(PRINT_PROMPT) >> ./$(OUTPUTS_DIR)$@_ref.txt; pwd    >> ./$(OUTPUTS_DIR)$@_ref.txt
+	@$(PRINT_PROMPT) >> ./$(OUTPUTS_DIR)$@_ref.txt; uname  >> ./$(OUTPUTS_DIR)$@_ref.txt
+	@$(PRINT_PROMPT) >> ./$(OUTPUTS_DIR)$@_ref.txt; id >> ./$(OUTPUTS_DIR)$@_ref.txt
+	@$(PRINT_PROMPT) >> ./$(OUTPUTS_DIR)$@_ref.txt;
+
+	@echo running MiniShell $@
+	@-./$(TEST_SHELL) < ./$(INPUTS_DIR)$@.txt >> $@_out.txt
+	@dos2unix $@_out.txt
+	@if diff -ui $@_out.txt ./$(OUTPUTS_DIR)$@_ref.txt; then echo $@ >> passed.txt; echo passed; else echo $@ >> failed.txt; echo failed; fi
+	@echo -e 'done $@\n\n'
+
+
+test_02 : 
+	@$(PRINT_PROMPT) >> ./$(OUTPUTS_DIR)$@_ref.txt; id --help >> ./$(OUTPUTS_DIR)$@_ref.txt
+	@$(PRINT_PROMPT) >> ./$(OUTPUTS_DIR)$@_ref.txt; uname --help  >> ./$(OUTPUTS_DIR)$@_ref.txt
+	@$(PRINT_PROMPT) >> ./$(OUTPUTS_DIR)$@_ref.txt; uname -a      >> ./$(OUTPUTS_DIR)$@_ref.txt
+	@$(PRINT_PROMPT) >> ./$(OUTPUTS_DIR)$@_ref.txt; uname -s -m   >> ./$(OUTPUTS_DIR)$@_ref.txt
+	@$(PRINT_PROMPT) >> ./$(OUTPUTS_DIR)$@_ref.txt;
+
+	@echo running MiniShell $@
+	@-./$(TEST_SHELL) < ./$(INPUTS_DIR)$@.txt >> $@_out.txt
+	@dos2unix $@_out.txt
+	@if diff -ui $@_out.txt ./$(OUTPUTS_DIR)$@_ref.txt; then echo $@ >> passed.txt; echo passed; else echo $@ >> failed.txt; echo failed; fi
+	@echo -e 'done $@\n\n'
+
+
+$(TESTS_LIST) : 
+	@mkdir $@_out
+	@-cd $@_out; export TEST_DIR=`pwd`; export UNU=1; echo running $@ $(REF_SHELL); \
+                     $(REF_SHELL)    ../$(INPUTS_DIR)$@.txt
+	@mv $@_out $@_ref; mkdir $@_out
+	@-cd $@_out; export TEST_DIR=`pwd`; export UNU=1; echo running MiniShell $@; \
+                    sed 's/^\.\///' ../$(INPUTS_DIR)$@.txt | ../$(TEST_SHELL) >> ../outputs.txt
+	@if diff -r -ui $@_out $@_ref; then echo $@ >> passed.txt; echo passed; else echo $@ >> failed.txt; echo failed; fi
+	@echo -e 'done $@\n\n'
+
+
+test_18 : 
+	@echo running MiniShell $@
+	@-./$(TEST_SHELL) < ./$(INPUTS_DIR)$@.txt >> outputs.txt 2> $@_out.txt
+	@dos2unix $@_out.txt
+	@if diff -ui $@_out.txt ./$(OUTPUTS_DIR)$@_ref.txt; then echo $@ >> passed.txt; echo passed; else echo $@ >> failed.txt; echo failed; fi
+	@echo -e 'done $@\n\n'
+
+
+sum_up : 
+	@wc -l passed.txt
+	@wc -l failed.txt
+
+
+clean : clean_files clean_results
+	@echo
+
+clean_files : 
+	rm -f -r *~ outputs.txt test_*_out.txt $(addsuffix _out, $(TESTS_LIST)) $(addsuffix _ref, $(TESTS_LIST)) ./$(OUTPUTS_DIR)test_01_ref.txt ./$(OUTPUTS_DIR)test_02_ref.txt
+
+clean_results : 
+	rm -f passed.txt failed.txt

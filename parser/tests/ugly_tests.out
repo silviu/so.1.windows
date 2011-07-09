@@ -1,0 +1,593 @@
+> 'testele acestea nu au neaparat sens sa fie executate; doar testeaza parser-ul'
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'testele acestea nu au neaparat sens sa fie executate; doar testeaza parser-ul'
+            )
+        )
+    )
+)
+
+
+> exit 1
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'exit'
+            )
+            params (
+                '1'
+            )
+        )
+    )
+)
+
+
+> cd cd
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'cd'
+            )
+            params (
+                'cd'
+            )
+        )
+    )
+)
+
+
+> cd exit
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'cd'
+            )
+            params (
+                'exit'
+            )
+        )
+    )
+)
+
+
+> print_params >out.txt>out.txt>out.txt<in.txt<in.txt<in1.txt>out1.txt&>err
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'print_params'
+            )
+            in (
+                'in.txt'
+                'in.txt'
+                'in1.txt'
+            )
+            out (
+                'out.txt'
+                'out.txt'
+                'out.txt'
+                'out1.txt'
+                'err'
+            )
+            err (
+                'err'
+            )
+        )
+    )
+)
+
+
+> 'mumu &' mumu
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'mumu &'
+            )
+            params (
+                'mumu'
+            )
+        )
+    )
+)
+
+
+> 'cd | cd' | cd | "cd | cd" & "&%%^@AFEAWFTGAGACQ~!~@!%^&^&%*&^&*()'''"
+Command successfully read!
+command_t (
+    op == OP_PARALLEL
+    cmd1 (
+        command_t (
+            op == OP_PIPE
+            cmd1 (
+                command_t (
+                    op == OP_PIPE
+                    cmd1 (
+                        command_t (
+                            scmd (
+                                simple_command_t (
+                                    verb (
+                                        'cd | cd'
+                                    )
+                                )
+                            )
+                        )
+                    )
+                    cmd2 (
+                        command_t (
+                            scmd (
+                                simple_command_t (
+                                    verb (
+                                        'cd'
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+            cmd2 (
+                command_t (
+                    scmd (
+                        simple_command_t (
+                            verb (
+                                'cd | cd'
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+    cmd2 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        '&%%^@AFEAWFTGAGACQ~!~@!%^&^&%*&^&*()''''
+                    )
+                )
+            )
+        )
+    )
+)
+
+
+>                     														   
+Command successfully read!
+Command is empty!
+
+
+> export m=shot
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'export'
+            )
+            params (
+                'm';    '=';    'shot'
+            )
+        )
+    )
+)
+
+
+> 			          p									 
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'p'
+            )
+        )
+    )
+)
+
+
+> p
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'p'
+            )
+        )
+    )
+)
+
+
+> c1 & c2 | c3 && c4 ; c5 || c6 ; c7 | c8 & c9 | c10 && c11
+Command successfully read!
+command_t (
+    op == OP_SEQUENTIAL
+    cmd1 (
+        command_t (
+            op == OP_SEQUENTIAL
+            cmd1 (
+                command_t (
+                    op == OP_PARALLEL
+                    cmd1 (
+                        command_t (
+                            scmd (
+                                simple_command_t (
+                                    verb (
+                                        'c1'
+                                    )
+                                )
+                            )
+                        )
+                    )
+                    cmd2 (
+                        command_t (
+                            op == OP_CONDITIONAL_ZERO
+                            cmd1 (
+                                command_t (
+                                    op == OP_PIPE
+                                    cmd1 (
+                                        command_t (
+                                            scmd (
+                                                simple_command_t (
+                                                    verb (
+                                                        'c2'
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                    cmd2 (
+                                        command_t (
+                                            scmd (
+                                                simple_command_t (
+                                                    verb (
+                                                        'c3'
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            cmd2 (
+                                command_t (
+                                    scmd (
+                                        simple_command_t (
+                                            verb (
+                                                'c4'
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+            cmd2 (
+                command_t (
+                    op == OP_CONDITIONAL_NZERO
+                    cmd1 (
+                        command_t (
+                            scmd (
+                                simple_command_t (
+                                    verb (
+                                        'c5'
+                                    )
+                                )
+                            )
+                        )
+                    )
+                    cmd2 (
+                        command_t (
+                            scmd (
+                                simple_command_t (
+                                    verb (
+                                        'c6'
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+    cmd2 (
+        command_t (
+            op == OP_PARALLEL
+            cmd1 (
+                command_t (
+                    op == OP_PIPE
+                    cmd1 (
+                        command_t (
+                            scmd (
+                                simple_command_t (
+                                    verb (
+                                        'c7'
+                                    )
+                                )
+                            )
+                        )
+                    )
+                    cmd2 (
+                        command_t (
+                            scmd (
+                                simple_command_t (
+                                    verb (
+                                        'c8'
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+            cmd2 (
+                command_t (
+                    op == OP_CONDITIONAL_ZERO
+                    cmd1 (
+                        command_t (
+                            op == OP_PIPE
+                            cmd1 (
+                                command_t (
+                                    scmd (
+                                        simple_command_t (
+                                            verb (
+                                                'c9'
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            cmd2 (
+                                command_t (
+                                    scmd (
+                                        simple_command_t (
+                                            verb (
+                                                'c10'
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                    cmd2 (
+                        command_t (
+                            scmd (
+                                simple_command_t (
+                                    verb (
+                                        'c11'
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+)
+
+
+> c1 p1 | c2  p2 | c3 p3 >r3 | c4 >r4 | c5
+Command successfully read!
+command_t (
+    op == OP_PIPE
+    cmd1 (
+        command_t (
+            op == OP_PIPE
+            cmd1 (
+                command_t (
+                    op == OP_PIPE
+                    cmd1 (
+                        command_t (
+                            op == OP_PIPE
+                            cmd1 (
+                                command_t (
+                                    scmd (
+                                        simple_command_t (
+                                            verb (
+                                                'c1'
+                                            )
+                                            params (
+                                                'p1'
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            cmd2 (
+                                command_t (
+                                    scmd (
+                                        simple_command_t (
+                                            verb (
+                                                'c2'
+                                            )
+                                            params (
+                                                'p2'
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                    cmd2 (
+                        command_t (
+                            scmd (
+                                simple_command_t (
+                                    verb (
+                                        'c3'
+                                    )
+                                    params (
+                                        'p3'
+                                    )
+                                    out (
+                                        'r3'
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+            cmd2 (
+                command_t (
+                    scmd (
+                        simple_command_t (
+                            verb (
+                                'c4'
+                            )
+                            out (
+                                'r4'
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+    cmd2 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'c5'
+                    )
+                )
+            )
+        )
+    )
+)
+
+
+> c:\progra~1/\\\\\\\\\./\/\/
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'c:\progra~1/\\\\\\\\\./\/\/'
+            )
+        )
+    )
+)
+
+
+> %WINDIR% $HOME
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                '%WINDIR%'
+            )
+            params (
+                expand('HOME')
+            )
+        )
+    )
+)
+
+
+> cd ~
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'cd'
+            )
+            params (
+                '~'
+            )
+        )
+    )
+)
+
+
+> cd $m'aie'
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'cd'
+            )
+            params (
+                expand('m');    'aie'
+            )
+        )
+    )
+)
+
+
+> 'm'====== $t =& x '?|$_' $_ && $_$_
+Command successfully read!
+command_t (
+    op == OP_PARALLEL
+    cmd1 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'm';    '=';    '=';    '=';    '=';    '=';    '='
+                    )
+                    params (
+                        expand('t')
+                        '='
+                    )
+                )
+            )
+        )
+    )
+    cmd2 (
+        command_t (
+            op == OP_CONDITIONAL_ZERO
+            cmd1 (
+                command_t (
+                    scmd (
+                        simple_command_t (
+                            verb (
+                                'x'
+                            )
+                            params (
+                                '?|$_'
+                                expand('_')
+                            )
+                        )
+                    )
+                )
+            )
+            cmd2 (
+                command_t (
+                    scmd (
+                        simple_command_t (
+                            verb (
+                                expand('_');    expand('_')
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+)
+
+
+> End of file!

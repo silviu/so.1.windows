@@ -1,0 +1,159 @@
+Tema 1 Mini-shell
+
+Enunţ
+Să se implementeze un shell simplu, care suportă execuţia de comenzi externe cu argumente multiple, comenzi interne,
+redirectări, pipe-uri. Shell-ul trebuie să suporte execuţia de comenzi compuse, cu oricâţi operatori.
+Shell-ul trebuie să suporte următorii operatori de execuţie:
+operatorul de secvenţiere ";"
+va fi folosit pentru a executa comenzile "pe rând";
+de exemplu, expr1; expr2 va avea ca efect mai întâi execuţia comenzilor expr1 şi, după terminarea execuţiei
+acestora, execuţia comenzilor expr2;
+operatorul de paralelism "&"
+va fi folosit pentru a executa comenzile în paralel;
+de exemplu, expr1 & expr2 va avea ca efect execuţia comenzilor expr1 şi a comenzilor expr2 în paralel;
+In implementarea NU aveti voie sa va reapelati singuri executabilul. execv("./my_homework", "command");
+operatorul "|" (pipe)
+va fi folosit pentru înlănţuirea comenzilor;
+de exemplu, expr1 | expr2 va avea ca efect execuţia comezilor expr1 cu stdout-ul redirectat în stdin-ul comenzilor
+expr2;
+operatorii de execuţie condiţionată "&&" şi "||"
+vor fi folosiţi pentru a executa comenzile în funcţie de codul de eroare;
+expr1 && expr2 va avea ca efect execuţia comenzilor expr2 doar în cazul în care comenzile expr1 au ca rezultat
+un cod de eroare 0;
+expr1 || expr2 va avea ca efect execuţia comenzilor expr2 doar în cazul în care comenzile expr1 au ca rezultat
+un cod de eroare diferit de zero.
+
+Prioritatea operatorilor de execuţie este, de la cel mai prioritar la cel mai puţin prioritar:
+operatorul |
+operatorii de execuţie condiţionată
+operatorul de paralelism
+operatorul de secvenţiere
+
+Shell-ul trebuie, de asemenea, să suporte şi următorii operatori de redirectare:
+"< nume_fisier" pentru redirectarea intrării din fişierul nume_fisier;
+"> nume_fiser" pentru redirectarea ieşirii standard în fişierul nume_fisier;
+"2> nume_fisier" pentru redirectarea ieşirii de eroare standard în fişierul nume_fisier;
+"&> nume_fisier" pentru redirectarea ieşirii standard şi ieşirii de eroare standard în fişierul nume_fisier;
+"? nume_fisier" pentru redirectarea ieşirii standard în fişierul nume_fisier în modul "append";
+"2? nume_fisier" pentru redirectarea ieşirii de eroare standard în fişierul nume_fisier în modul "append".
+
+În fine, shell-ul trebuie să suporte următoarele comenzi interne:
+exit şi quit pentru terminarea shell-ului;
+cd director pentru schimbarea directorului curent.
+
+Shell-ul trebuie să suporte variabile de mediu:
+formatul de utilizare este $VARIABILA_DE_MEDIU identic pe Linux şi pe Windows;
+variabilele de mediu sunt moştenite de la shell-ul părinte (Bash) sau sunt definite în mini-shell;
+definirea variabilelor se face sub forma NUME_VARIABILA=valoare;
+nu trebuie tratat cazul în care valoare conţine referiri la alte variabile de mediu.
+Daca variabila de mediu nu exista aceasta are valoarea sirul vid (Atentie sirul vid este diferit de NULL)
+
+Precizări generale
+Pentru a simplifica implementarea temei, puteţi folosi parserul implementat de noi. Pentru detalii despre parser, citiţi
+fişierul README din arhivă.
+Promptul afişat de shell este impus pentru a facilita testarea automata şi este ">" (adică se va afişa caracterul > urmat
+de un spaţiu).
+Numele executabilului temei trebuie să fie mini-shell pe Linux, respectiv mini-shell.exe pe Windows.
+Din cauza diferenţei între Windows şi Linux la crearea de noi procese (CreateProcess vs. fork + exec) s-ar putea să
+nu puteţi folosi acelaşi tip de parcurgere a arborelui sintactic şi pe Windows şi pe Linux. Daca vreţi să reutilizaţi
+concepte/cod de pe Linux pe Windows, concepeţi parcurgerea să funcţioneze şi cu funcţia CreateProcess de pe
+Windows.
+În rezolvarea temei puteţi porni de la exemplul de utilizare a parserului (UseParser.cpp sau CUseParser.c).
+Recomandăm rezolvarea şi testarea din aproape în aproape a temei dupa paşi:
+rularea de comenzi simple
+rularea de comenzi interne (cd, exit, quit)
+implementarea redirectărilor (operatorii >, <, 2>, &>, ?, 2?)
+variabile de mediu
+secvenţierea comenzilor (operatorii &&, ||, ;)
+implementarea operatorilor & (paralel) şi | (pipe)
+
+Aveţi mai jos câteva exemple de comenzi şi rezultatul generat de acestea:
+> ls
+Makefile
+README.checker
+Makefile.checker inputs
+
+mini-shell
+mini-shell.c
+
+mini-shell.o
+outputs
+
+parser
+tags
+
+> uname -a ; ps
+Linux bogdan-desktop 2.6.31-19-generic #56-Ubuntu SMP Thu Jan 28 02:39:34 UTC 2010 x86_64 GNU/Linux
+PID TTY
+TIME CMD
+6078 pts/0
+00:00:00 bash
+6190 pts/0
+00:00:00 mini-shell
+6200 pts/0
+00:00:00 ps
+> date && sleep 1 ; echo date
+Mon Feb 8 13:40:25 EET 2010
+date
+> date && sleep 1; date
+Mon Feb 8 13:40:49 EET 2010
+Mon Feb 8 13:40:50 EET 2010
+> true && date
+Mon Feb 8 13:41:16 EET 2010
+> false && cat mini-shell.c
+> false || date
+Mon Feb 8 13:42:36 EET 2010
+> cat /et/services
+cat: /et/services: No such file or directory
+> cta /etc/services
+Execution failed for 'cta'
+> cat /etc/services | grep telnet
+telnet
+23/tcp
+rtelnet
+107/tcp
+rtelnet
+107/udp
+telnets
+992/tcp
+telnets
+992/udp
+tfido
+60177/tcp
+
+# Remote Telnet
+# Telnet over SSL
+# fidonet EMSI over telnet
+
+> gcc > tmp; echo sep; cat tmp
+gcc: no input files
+sep
+
+> strace -e trace=read ls 2> strace.out
+Makefile
+README.checker mini-shell
+Makefile.checker inputs
+mini-shell.c
+mini-shell.o
+outputs
+parser
+strace.out
+tags
+tmp
+
+
+Precizări Windows
+Tema se va rezolva folosind doar funcţii Win32. Se pot folosi, de asemenea, şi funcţiile de formatare printf, scanf,
+funcţiile de alocare de memorie malloc, free şi funcţiile de lucru cu şiruri de caractere (strcat, strdup, etc.)
+Pentru partea de I/O şi procese se vor folosi doar functţi Win32. De exemplu, funcţiile open, read, write, close nu
+trebuie folosite, în locul acestor trebuind să folosiţi CreateFile, ReadFile, WriteFile, CloseHandle.
+Pentru a permite transmiterea de caractere speciale în argumente (spre exemplu echo "int main() { return 0; }")
+recomandăm să "îngrădiţi" argumentele liniei de comandă a CreateProcess cu ghilimele.
+ATENŢIE: Pentru testarea temei cu testele publice se va folosi cygwin, dar compilarea sursei se face cu compilatorul
+specific Windows-ului cl (in Visual Studio console).
+
+Precizări Linux
+Tema se va rezolva folosind doar funcţii POSIX. Se pot folosi de asemenea şi funcţiile de formatare printf, scanf,
+funcţiile de alocare de memorie malloc, free şi funcţiile de de lucru cu şiruri de caractere (strcat, strdup, etc.)
+Pentru partea de I/O şi procese se vor folosi doar funcţii POSIX. De exemplu, funcţiile fopen, fread, fwrite, fclose nu
+trebuie folosite, în locul acestor trebuind să folosiţi open, read, write, close.

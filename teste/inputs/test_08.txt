@@ -1,0 +1,4 @@
+echo "int main(){return 0;}" | cat > src.c
+gcc-3 -o a.exe src.c
+./a.exe && rm a.exe
+exit

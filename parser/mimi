@@ -1,0 +1,19 @@
+> 
+Command successfully read!
+Command is empty!
+
+
+> ls 
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'ls'
+            )
+        )
+    )
+)
+
+
+> 

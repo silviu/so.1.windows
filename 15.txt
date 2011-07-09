@@ -1,0 +1,2 @@
+rm -f -r *~ outputs.txt test_*_out.txt test_15_out test_15_ref ./outputs/test_01_ref.txt ./outputs/test_02_ref.txt
+rm -f passed.txt failed.txt

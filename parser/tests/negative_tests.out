@@ -1,0 +1,201 @@
+> print_params '$m
+Parse error near 14: syntax error, unexpected UNEXPECTED_EOF
+Error parsing!
+
+
+> print_params "$m
+Parse error near 14: syntax error, unexpected UNEXPECTED_EOF
+Error parsing!
+
+
+> print_params $
+Parse error near 13: syntax error, unexpected INVALID_ENVIRONMENT_VAR
+Error parsing!
+
+
+> print_params $ 
+Parse error near 13: syntax error, unexpected INVALID_ENVIRONMENT_VAR
+Error parsing!
+
+
+> print_params $'m'
+Parse error near 13: syntax error, unexpected INVALID_ENVIRONMENT_VAR
+Error parsing!
+
+
+> print_params $"m"
+Parse error near 13: syntax error, unexpected INVALID_ENVIRONMENT_VAR
+Error parsing!
+
+
+> print_params $$
+Parse error near 13: syntax error, unexpected INVALID_ENVIRONMENT_VAR
+Error parsing!
+
+
+> print_params "$$"
+Parse error near 14: syntax error, unexpected INVALID_ENVIRONMENT_VAR
+Error parsing!
+
+
+> p "$5"
+Parse error near 3: syntax error, unexpected INVALID_ENVIRONMENT_VAR
+Error parsing!
+
+
+> p "$!"
+Parse error near 3: syntax error, unexpected INVALID_ENVIRONMENT_VAR
+Error parsing!
+
+
+> p $5
+Parse error near 2: syntax error, unexpected INVALID_ENVIRONMENT_VAR
+Error parsing!
+
+
+> p $!
+Parse error near 2: syntax error, unexpected INVALID_ENVIRONMENT_VAR
+Error parsing!
+
+
+> print_params $ m
+Parse error near 13: syntax error, unexpected INVALID_ENVIRONMENT_VAR
+Error parsing!
+
+
+> print_params >> f
+Parse error near 14: syntax error, unexpected REDIRECT_O, expecting BLANK or WORD or ENV_VAR
+Error parsing!
+
+
+> print_params << f
+Parse error near 14: syntax error, unexpected INDIRECT, expecting BLANK or WORD or ENV_VAR
+Error parsing!
+
+
+> print_params <> f
+Parse error near 14: syntax error, unexpected REDIRECT_O, expecting BLANK or WORD or ENV_VAR
+Error parsing!
+
+
+> print_params <2> f
+Parse error near 14: syntax error, unexpected REDIRECT_E, expecting BLANK or WORD or ENV_VAR
+Error parsing!
+
+
+> print_params <&> f
+Parse error near 14: syntax error, unexpected REDIRECT_OE, expecting BLANK or WORD or ENV_VAR
+Error parsing!
+
+
+> print_params < $
+Parse error near 15: syntax error, unexpected INVALID_ENVIRONMENT_VAR, expecting WORD or ENV_VAR
+Error parsing!
+
+
+> <
+Parse error near 0: syntax error, unexpected INDIRECT
+Error parsing!
+
+
+> >
+Parse error near 0: syntax error, unexpected REDIRECT_O
+Error parsing!
+
+
+> 2>
+Parse error near 0: syntax error, unexpected REDIRECT_E
+Error parsing!
+
+
+> &>
+Parse error near 0: syntax error, unexpected REDIRECT_OE
+Error parsing!
+
+
+> |
+Parse error near 0: syntax error, unexpected PIPE
+Error parsing!
+
+
+> ||
+Parse error near 0: syntax error, unexpected CONDITIONAL_NZERO
+Error parsing!
+
+
+> &&
+Parse error near 0: syntax error, unexpected CONDITIONAL_ZERO
+Error parsing!
+
+
+> &
+Parse error near 0: syntax error, unexpected PARALLEL
+Error parsing!
+
+
+> >>>>>>>>>>>>>>>>
+Parse error near 0: syntax error, unexpected REDIRECT_O
+Error parsing!
+
+
+> <<<<<<<<<<<<<<<<<
+Parse error near 0: syntax error, unexpected INDIRECT
+Error parsing!
+
+
+> &&&&&&&&&&&&&&&&
+Parse error near 0: syntax error, unexpected CONDITIONAL_ZERO
+Error parsing!
+
+
+> print_params > | err
+Parse error near 15: syntax error, unexpected PIPE, expecting WORD or ENV_VAR
+Error parsing!
+
+
+> ls|
+Parse error near 2: syntax error, unexpected END_OF_FILE, expecting BLANK or WORD or ENV_VAR
+Error parsing!
+
+
+> | ls |
+Parse error near 0: syntax error, unexpected PIPE
+Error parsing!
+
+
+> p "
+Parse error near 2: syntax error, unexpected UNEXPECTED_EOF
+Error parsing!
+
+
+> p '
+Parse error near 2: syntax error, unexpected UNEXPECTED_EOF
+Error parsing!
+
+
+> p ^
+Parse error near 2: syntax error, unexpected NOT_ACCEPTED_CHAR
+Error parsing!
+
+
+> 	p 		<	"<"	&
+Parse error near 11: syntax error, unexpected END_OF_FILE, expecting BLANK or WORD or ENV_VAR
+Error parsing!
+
+
+> p1 | > p2
+Parse error near 5: syntax error, unexpected REDIRECT_O, expecting WORD or ENV_VAR
+Error parsing!
+
+
+> 			> out
+Parse error near 3: syntax error, unexpected REDIRECT_O, expecting END_OF_FILE or END_OF_LINE or WORD or ENV_VAR
+Error parsing!
+
+
+> p1 > r1 p1
+Parse error near 8: syntax error, unexpected WORD
+Error parsing!
+
+
+> End of file!

@@ -1,0 +1,206 @@
+> sleep 0.2 &&  echo 1 >> numbers & sleep 0.7 && echo '3' >> numbers & sleep 1.0 && false || echo '4' >> numbers & sleep 0.5 &&  echo '2' >> numbers ; sleep 0.5
+Command successfully read!
+command_t (
+    op == OP_SEQUENTIAL
+    cmd1 (
+        command_t (
+            op == OP_PARALLEL
+            cmd1 (
+                command_t (
+                    op == OP_PARALLEL
+                    cmd1 (
+                        command_t (
+                            op == OP_PARALLEL
+                            cmd1 (
+                                command_t (
+                                    op == OP_CONDITIONAL_ZERO
+                                    cmd1 (
+                                        command_t (
+                                            scmd (
+                                                simple_command_t (
+                                                    verb (
+                                                        'sleep'
+                                                    )
+                                                    params (
+                                                        '0.2'
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                    cmd2 (
+                                        command_t (
+                                            scmd (
+                                                simple_command_t (
+                                                    verb (
+                                                        'echo'
+                                                    )
+                                                    params (
+                                                        '1'
+                                                    )
+                                                    out (
+                                                        'numbers'
+                                                        APPEND
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            cmd2 (
+                                command_t (
+                                    op == OP_CONDITIONAL_ZERO
+                                    cmd1 (
+                                        command_t (
+                                            scmd (
+                                                simple_command_t (
+                                                    verb (
+                                                        'sleep'
+                                                    )
+                                                    params (
+                                                        '0.7'
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                    cmd2 (
+                                        command_t (
+                                            scmd (
+                                                simple_command_t (
+                                                    verb (
+                                                        'echo'
+                                                    )
+                                                    params (
+                                                        '3'
+                                                    )
+                                                    out (
+                                                        'numbers'
+                                                        APPEND
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                    cmd2 (
+                        command_t (
+                            op == OP_CONDITIONAL_NZERO
+                            cmd1 (
+                                command_t (
+                                    op == OP_CONDITIONAL_ZERO
+                                    cmd1 (
+                                        command_t (
+                                            scmd (
+                                                simple_command_t (
+                                                    verb (
+                                                        'sleep'
+                                                    )
+                                                    params (
+                                                        '1.0'
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                    cmd2 (
+                                        command_t (
+                                            scmd (
+                                                simple_command_t (
+                                                    verb (
+                                                        'false'
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            cmd2 (
+                                command_t (
+                                    scmd (
+                                        simple_command_t (
+                                            verb (
+                                                'echo'
+                                            )
+                                            params (
+                                                '4'
+                                            )
+                                            out (
+                                                'numbers'
+                                                APPEND
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+            cmd2 (
+                command_t (
+                    op == OP_CONDITIONAL_ZERO
+                    cmd1 (
+                        command_t (
+                            scmd (
+                                simple_command_t (
+                                    verb (
+                                        'sleep'
+                                    )
+                                    params (
+                                        '0.5'
+                                    )
+                                )
+                            )
+                        )
+                    )
+                    cmd2 (
+                        command_t (
+                            scmd (
+                                simple_command_t (
+                                    verb (
+                                        'echo'
+                                    )
+                                    params (
+                                        '2'
+                                    )
+                                    out (
+                                        'numbers'
+                                        APPEND
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+    cmd2 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'sleep'
+                    )
+                    params (
+                        '0.5'
+                    )
+                )
+            )
+        )
+    )
+)
+
+
+> 
+Command successfully read!
+Command is empty!
+
+
+> 

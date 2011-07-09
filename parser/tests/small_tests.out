@@ -1,0 +1,941 @@
+> mkdir tmp
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'mkdir'
+            )
+            params (
+                'tmp'
+            )
+        )
+    )
+)
+
+
+> cd tmp
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'cd'
+            )
+            params (
+                'tmp'
+            )
+        )
+    )
+)
+
+
+> ls
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'ls'
+            )
+        )
+    )
+)
+
+
+> ls -l -a
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'ls'
+            )
+            params (
+                '-l'
+                '-a'
+            )
+        )
+    )
+)
+
+
+> cd .
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'cd'
+            )
+            params (
+                '.'
+            )
+        )
+    )
+)
+
+
+> ls
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'ls'
+            )
+        )
+    )
+)
+
+
+> mkdir tmp
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'mkdir'
+            )
+            params (
+                'tmp'
+            )
+        )
+    )
+)
+
+
+> ls 
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'ls'
+            )
+        )
+    )
+)
+
+
+> cd tmp
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'cd'
+            )
+            params (
+                'tmp'
+            )
+        )
+    )
+)
+
+
+> ls 
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'ls'
+            )
+        )
+    )
+)
+
+
+> cd ..
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'cd'
+            )
+            params (
+                '..'
+            )
+        )
+    )
+)
+
+
+> ls
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'ls'
+            )
+        )
+    )
+)
+
+
+> asdf
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'asdf'
+            )
+        )
+    )
+)
+
+
+> test test > test.out
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'test'
+            )
+            params (
+                'test'
+            )
+            out (
+                'test.out'
+            )
+        )
+    )
+)
+
+
+> ls test.out
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'ls'
+            )
+            params (
+                'test.out'
+            )
+        )
+    )
+)
+
+
+> cat test.out
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'cat'
+            )
+            params (
+                'test.out'
+            )
+        )
+    )
+)
+
+
+> cat < test.out
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'cat'
+            )
+            in (
+                'test.out'
+            )
+        )
+    )
+)
+
+
+> gcc 2> test.err
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'gcc'
+            )
+            err (
+                'test.err'
+            )
+        )
+    )
+)
+
+
+> ls test.err
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'ls'
+            )
+            params (
+                'test.err'
+            )
+        )
+    )
+)
+
+
+> cat test.err
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'cat'
+            )
+            params (
+                'test.err'
+            )
+        )
+    )
+)
+
+
+> cat < test.err
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'cat'
+            )
+            in (
+                'test.err'
+            )
+        )
+    )
+)
+
+
+> cat /etc/services | grep ftp
+Command successfully read!
+command_t (
+    op == OP_PIPE
+    cmd1 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'cat'
+                    )
+                    params (
+                        '/etc/services'
+                    )
+                )
+            )
+        )
+    )
+    cmd2 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'grep'
+                    )
+                    params (
+                        'ftp'
+                    )
+                )
+            )
+        )
+    )
+)
+
+
+> cat /etc/service | grep ftp | grep udp
+Command successfully read!
+command_t (
+    op == OP_PIPE
+    cmd1 (
+        command_t (
+            op == OP_PIPE
+            cmd1 (
+                command_t (
+                    scmd (
+                        simple_command_t (
+                            verb (
+                                'cat'
+                            )
+                            params (
+                                '/etc/service'
+                            )
+                        )
+                    )
+                )
+            )
+            cmd2 (
+                command_t (
+                    scmd (
+                        simple_command_t (
+                            verb (
+                                'grep'
+                            )
+                            params (
+                                'ftp'
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+    cmd2 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'grep'
+                    )
+                    params (
+                        'udp'
+                    )
+                )
+            )
+        )
+    )
+)
+
+
+> sleep 1 && date ; date 
+Command successfully read!
+command_t (
+    op == OP_SEQUENTIAL
+    cmd1 (
+        command_t (
+            op == OP_CONDITIONAL_ZERO
+            cmd1 (
+                command_t (
+                    scmd (
+                        simple_command_t (
+                            verb (
+                                'sleep'
+                            )
+                            params (
+                                '1'
+                            )
+                        )
+                    )
+                )
+            )
+            cmd2 (
+                command_t (
+                    scmd (
+                        simple_command_t (
+                            verb (
+                                'date'
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+    cmd2 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'date'
+                    )
+                )
+            )
+        )
+    )
+)
+
+
+> sleep 1 && date & date 
+Command successfully read!
+command_t (
+    op == OP_PARALLEL
+    cmd1 (
+        command_t (
+            op == OP_CONDITIONAL_ZERO
+            cmd1 (
+                command_t (
+                    scmd (
+                        simple_command_t (
+                            verb (
+                                'sleep'
+                            )
+                            params (
+                                '1'
+                            )
+                        )
+                    )
+                )
+            )
+            cmd2 (
+                command_t (
+                    scmd (
+                        simple_command_t (
+                            verb (
+                                'date'
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+    cmd2 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'date'
+                    )
+                )
+            )
+        )
+    )
+)
+
+
+> true && ls
+Command successfully read!
+command_t (
+    op == OP_CONDITIONAL_ZERO
+    cmd1 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'true'
+                    )
+                )
+            )
+        )
+    )
+    cmd2 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'ls'
+                    )
+                )
+            )
+        )
+    )
+)
+
+
+> false && ls
+Command successfully read!
+command_t (
+    op == OP_CONDITIONAL_ZERO
+    cmd1 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'false'
+                    )
+                )
+            )
+        )
+    )
+    cmd2 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'ls'
+                    )
+                )
+            )
+        )
+    )
+)
+
+
+> true || ls
+Command successfully read!
+command_t (
+    op == OP_CONDITIONAL_NZERO
+    cmd1 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'true'
+                    )
+                )
+            )
+        )
+    )
+    cmd2 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'ls'
+                    )
+                )
+            )
+        )
+    )
+)
+
+
+> false || ls
+Command successfully read!
+command_t (
+    op == OP_CONDITIONAL_NZERO
+    cmd1 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'false'
+                    )
+                )
+            )
+        )
+    )
+    cmd2 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'ls'
+                    )
+                )
+            )
+        )
+    )
+)
+
+
+> ls > asdf/asdf
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'ls'
+            )
+            out (
+                'asdf/asdf'
+            )
+        )
+    )
+)
+
+
+> 
+Command successfully read!
+Command is empty!
+
+
+> sleep 1 && date & echo aaa
+Command successfully read!
+command_t (
+    op == OP_PARALLEL
+    cmd1 (
+        command_t (
+            op == OP_CONDITIONAL_ZERO
+            cmd1 (
+                command_t (
+                    scmd (
+                        simple_command_t (
+                            verb (
+                                'sleep'
+                            )
+                            params (
+                                '1'
+                            )
+                        )
+                    )
+                )
+            )
+            cmd2 (
+                command_t (
+                    scmd (
+                        simple_command_t (
+                            verb (
+                                'date'
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+    cmd2 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'echo'
+                    )
+                    params (
+                        'aaa'
+                    )
+                )
+            )
+        )
+    )
+)
+
+
+> ls &> test.out
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'ls'
+            )
+            out (
+                'test.out'
+            )
+            err (
+                'test.out'
+            )
+        )
+    )
+)
+
+
+> cat test.out
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'cat'
+            )
+            params (
+                'test.out'
+            )
+        )
+    )
+)
+
+
+> gcc &> test.out
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'gcc'
+            )
+            out (
+                'test.out'
+            )
+            err (
+                'test.out'
+            )
+        )
+    )
+)
+
+
+> ls -ls | grep f
+Command successfully read!
+command_t (
+    op == OP_PIPE
+    cmd1 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'ls'
+                    )
+                    params (
+                        '-ls'
+                    )
+                )
+            )
+        )
+    )
+    cmd2 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'grep'
+                    )
+                    params (
+                        'f'
+                    )
+                )
+            )
+        )
+    )
+)
+
+
+> sleep 1 && date & pwd 
+Command successfully read!
+command_t (
+    op == OP_PARALLEL
+    cmd1 (
+        command_t (
+            op == OP_CONDITIONAL_ZERO
+            cmd1 (
+                command_t (
+                    scmd (
+                        simple_command_t (
+                            verb (
+                                'sleep'
+                            )
+                            params (
+                                '1'
+                            )
+                        )
+                    )
+                )
+            )
+            cmd2 (
+                command_t (
+                    scmd (
+                        simple_command_t (
+                            verb (
+                                'date'
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+    cmd2 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'pwd'
+                    )
+                )
+            )
+        )
+    )
+)
+
+
+> gcc &> err; ls -l err
+Command successfully read!
+command_t (
+    op == OP_SEQUENTIAL
+    cmd1 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'gcc'
+                    )
+                    out (
+                        'err'
+                    )
+                    err (
+                        'err'
+                    )
+                )
+            )
+        )
+    )
+    cmd2 (
+        command_t (
+            scmd (
+                simple_command_t (
+                    verb (
+                        'ls'
+                    )
+                    params (
+                        '-l'
+                        'err'
+                    )
+                )
+            )
+        )
+    )
+)
+
+
+> 
+Command successfully read!
+Command is empty!
+
+
+> echo $HOME
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'echo'
+            )
+            params (
+                expand('HOME')
+            )
+        )
+    )
+)
+
+
+> echo $HOMER
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'echo'
+            )
+            params (
+                expand('HOMER')
+            )
+        )
+    )
+)
+
+
+> echo a/$HOME/b
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'echo'
+            )
+            params (
+                'a/';    expand('HOME');    '/b'
+            )
+        )
+    )
+)
+
+
+> echo a/$HOMER/b
+Command successfully read!
+command_t (
+    scmd (
+        simple_command_t (
+            verb (
+                'echo'
+            )
+            params (
+                'a/';    expand('HOMER');    '/b'
+            )
+        )
+    )
+)
+
+
+> End of file!
